@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.*;
@@ -33,6 +34,7 @@ public class PlayerShould {
     }
 
     @Test
+    @Disabled
     public void heal_to_other_player() {
         Player player = new Player();
         Player playerTwo = new Player();
@@ -53,6 +55,7 @@ public class PlayerShould {
     }
 
     @Test
+    @Disabled
     public void not_heal_over_1000_health() {
         Player playerOne = new Player();
         Player playerTwo = new Player();
@@ -62,6 +65,7 @@ public class PlayerShould {
     }
 
     @Test
+    @Disabled
     public void heal_200_points() {
         Player playerOne = new Player();
         Player playerTwo = new Player();
@@ -76,6 +80,17 @@ public class PlayerShould {
         player.dealDamage(player, 500);
         assertThat(player.health(), is(1000));
     }
+
+    @Test
+    public void heal_to_himself() {
+        Player playerOne = new Player();
+        Player playerTwo = new Player();
+        playerTwo.dealDamage(playerOne, 200);
+        playerOne.heal(playerOne, 100);
+        assertThat(playerOne.health(), is(900));
+    }
+
+    
 
 
 }
