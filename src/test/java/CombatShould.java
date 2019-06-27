@@ -11,4 +11,21 @@ public class CombatShould {
         assertThat(player.level(), is(1));
         assertThat(player.isAlive(), is(true));
     }
+
+    @Test
+    public void dealDamageToAPlayer() {
+        Player playerOne = new Player();
+        Player playerTwo = new Player();
+        playerOne.dealDamage(playerTwo, 2);
+        assertThat(playerTwo.healt(), is(998));
+    }
+
+    @Test
+    public void killAPlayer() {
+        Player playerOne = new Player();
+        Player playerTwo = new Player();
+        playerOne.dealDamage(playerTwo, 1001);
+        assertThat(playerTwo.healt(), is(0));
+        assertThat(playerTwo.isAlive(), is(false));
+    }
 }
