@@ -1,16 +1,21 @@
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 public class Player {
     private int health = 1000;
     private boolean live = true;
+    private int level = 1;
+
+    public Player() {
+    }
+
+    public Player(int level) {
+        this.level = level;
+    }
 
     public int health() {
         return health;
     }
 
     public int level() {
-        return 1;
+        return level;
     }
 
     public boolean isAlive() {
@@ -18,13 +23,31 @@ public class Player {
     }
 
     public void dealDamage(Player player, int damage) {
-        if(this != player){
-            player.setHealth(player.health() - damage);
+        if (this != player) {
+            player.setHealth(calculateDamage(player, damage));
         }
     }
 
-    private void setLive(boolean alive) {
-        this.live = alive;
+    private int calculateDamage(Player defender, int damage) {
+        if (defender.isDefenderOverPowered(this)) {
+            damage = increaseDamage50Percent(damage);
+        }
+        if (this.isDefenderOverPowered(defender)) {
+            damage = decreaseDamage50Percent(damage);
+        }
+        return defender.health() - damage;
+    }
+
+    private boolean isDefenderOverPowered(Player defender) {
+        return this.level <= defender.level - 5;
+    }
+
+    private int decreaseDamage50Percent(int damage) {
+        return damage / 2;
+    }
+
+    private int increaseDamage50Percent(int damage) {
+        return (int) (damage * 1.5);
     }
 
     private void setHealth(int health) {
@@ -39,7 +62,7 @@ public class Player {
     }
 
     public void heal(Player player, int points) {
-        if (player.isAlive()){
+        if (player.isAlive()) {
             player.setHealth(player.health += points);
         }
     }

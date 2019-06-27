@@ -82,6 +82,11 @@ public class PlayerShould {
         playerOne.heal(playerOne, 100);
         assertThat(playerOne.health(), is(900));
     }
-    
 
+    @Test
+    public void increase_damage_because_has_more_level() {
+        Player playerOne = new Player(6);
+        playerOne.dealDamage(playerTwo, 10);
+        assertThat(playerTwo.health(), is(985));
+    }
 }
