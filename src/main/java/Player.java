@@ -15,12 +15,7 @@ public class Player {
     }
 
     public void dealDamage(Player player, int damage) {
-        if (damage >= 1000) {
-            player.setHealt(0);
-            player.setLive(false);
-        } else {
-            player.setHealt(player.healt() - damage);
-        }
+        player.setHealt(player.healt() - damage);
     }
 
     private void setLive(boolean alive) {
@@ -28,6 +23,11 @@ public class Player {
     }
 
     private void setHealt(int healt) {
-        this.healt = healt;
+        if (healt <= 0) {
+            this.live = false;
+            this.healt = 0;
+        } else {
+            this.healt = healt;
+        }
     }
 }
