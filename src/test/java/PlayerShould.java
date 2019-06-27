@@ -60,4 +60,15 @@ public class PlayerShould {
         playerOne.heal(playerTwo, 200);
         assertThat(playerTwo.health(), is(1000));
     }
+
+    @Test
+    public void heal_200_points() {
+        Player playerOne = new Player();
+        Player playerTwo = new Player();
+        playerOne.dealDamage(playerTwo, 900);
+        playerOne.heal(playerTwo, 200);
+        assertThat(playerTwo.health(), is(300));
+    }
+
+
 }
