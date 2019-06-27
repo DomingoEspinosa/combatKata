@@ -1,3 +1,6 @@
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 public class Player {
     private int health = 1000;
     private boolean live = true;
@@ -15,7 +18,9 @@ public class Player {
     }
 
     public void dealDamage(Player player, int damage) {
-        player.setHealth(player.health() - damage);
+        if(this != player){
+            player.setHealth(player.health() - damage);
+        }
     }
 
     private void setLive(boolean alive) {

@@ -70,5 +70,12 @@ public class PlayerShould {
         assertThat(playerTwo.health(), is(300));
     }
 
+    @Test
+    public void not_damage_to_himself() {
+        Player player = new Player();
+        player.dealDamage(player, 500);
+        assertThat(player.health(), is(1000));
+    }
+
 
 }
