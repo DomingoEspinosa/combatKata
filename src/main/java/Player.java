@@ -26,6 +26,8 @@ public class Player {
         if (health <= 0) {
             this.live = false;
             this.health = 0;
+        } else if (this.health > 1000) {
+            this.health = 1000;
         } else {
             this.health = health;
         }
@@ -33,7 +35,7 @@ public class Player {
 
     public void heal(Player player, int points) {
         if (player.isAlive()){
-            player.setHealth(player.health + points);
+            player.setHealth(player.health += points);
         }
     }
 }

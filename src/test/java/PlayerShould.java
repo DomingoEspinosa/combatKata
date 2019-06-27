@@ -51,4 +51,13 @@ public class PlayerShould {
         assertThat(playerTwo.health(), is(0));
         assertThat(playerTwo.isAlive(), is(false));
     }
+
+    @Test
+    public void not_heal_over_1000_health() {
+        Player playerOne = new Player();
+        Player playerTwo = new Player();
+        playerOne.dealDamage(playerTwo, 1);
+        playerOne.heal(playerTwo, 200);
+        assertThat(playerTwo.health(), is(1000));
+    }
 }
